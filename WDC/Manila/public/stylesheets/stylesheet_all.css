@@ -1,0 +1,516 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Delius', 'Arial';
+}
+
+[v-cloak] {
+  display: none !important;
+}
+
+/*General (element tags)*/
+#vuemain{
+  min-width:1150px;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color:white;
+}
+
+main {
+  margin-right:5em;
+  margin-left:5em;
+  border-bottom-style:solid;
+  border-right-style:solid;
+  border-left-style:solid;
+  border-bottom-left-radius:25px;
+  border-bottom-right-radius:25px;
+  border-width:5px;
+  background-color:ivory;
+  padding-top:0.5em;
+  overflow:hidden;
+
+}
+
+button{
+  font-family:"Gochi Hand";
+}
+
+.greenbutton {
+  background-color: mediumseagreen;
+  color: white;
+  padding:2px;
+  text-align: center;
+  text-decoration: none;
+  display: inline;
+  font-size: 150%;
+  border-radius: 8px;
+  border-style:solid;
+  border-width:3px;
+  border-color:black;
+  float:right;
+
+}
+
+.greenbutton:hover{
+  background:seagreen;
+  cursor:pointer;
+}
+
+
+h1{
+  font-family:'Gochi Hand';
+  font-size:300%;
+  margin:0;
+  float:left;
+}
+
+
+
+
+/*Settings and Logout*/
+#settings {
+  height:50%;
+  margin-right:1.5vw;
+  margin-bottom:1vh;
+}
+
+#settings:hover{
+  cursor:pointer;
+}
+
+.hcm {
+  background-color:white !important;
+  color:black !important;
+}
+
+#logout{
+  float:right;
+  margin-right:0;
+  font-family:'Gochi Hand';
+  font-size:120%;
+  cursor:pointer;
+}
+
+#topright{
+  float:right;
+  text-align:right;
+  padding:1.5vh;
+  width:15vw;
+  height:14vh;
+}
+
+
+/*Top Nav and Header*/
+.header {
+  background-color:white;
+}
+
+#top{
+  margin-right:5em;
+  margin-left:5em;
+  border-top-style:solid;
+  border-left-style:solid;
+  border-right-style:solid;
+  border-width:5px;
+  border-top-left-radius:25px;
+  border-top-right-radius:25px;
+  height:3em;
+}
+
+.topnav {
+  overflow: hidden;
+  padding-top:3vw;
+  margin-left:10vw;
+}
+
+
+.topnav a {
+  float:left;
+  display: block;
+  margin-left:1vw;
+  margin-right:1vw;
+  z-index:-1;
+
+  color: white;
+  font-family:'Gochi Hand';
+  background-color:white;
+  text-align: center;
+  font-size:200%;
+  padding: 14px 16px;
+  text-decoration: none;
+  background-color:lightgrey;
+
+  border-top-style:solid;
+  border-right-style:solid;
+  border-left-style:solid;
+  border-top-left-radius:25px;
+  border-top-right-radius:25px;
+  border-width:5px;
+  border-color:black;
+
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+
+.content {
+  padding:2em;
+  padding-top:0;
+  margin-top:0;
+  overflow:auto;
+  min-height:80vh;
+}
+
+
+.footer {
+  background-color: lightgrey;
+  padding: 10px;
+  margin-top:5vh;
+}
+
+/*Tasks and Content*/
+.tab {
+  float: left;
+  border: 1px solid;
+  background-color: white;
+  width: 30%;
+  height: 70%;
+  border: 5px solid;
+  border-top-left-radius:25px;
+  border-bottom-left-radius:25px;
+  padding:1vh;
+
+}
+
+.tab button {
+  display: block;
+  background-color: inherit;
+  color: black;
+  padding:10px;
+  width: 100%;
+  height:20%;
+  border: none;
+  outline: none;
+  text-align: right;
+  cursor: pointer;
+  border-radius:20px;
+  text-align:center;
+  font-size:150%;
+  display:inline;
+}
+
+.tab button:hover {
+  background-color: #ddd;
+}
+
+.tab button.active {
+  background-color: #ccc;
+
+}
+
+.tabcontent {
+  float: left;
+  padding: 1em;
+  border: 5px solid;
+  width: 70%;
+  border-top-right-radius:25px;
+  border-bottom-right-radius:25px;
+  border-bottom-left-radius:25px;
+  background:white;
+  overflow:hidden;
+}
+
+
+/*Task Status*/
+.statusbutton {
+  background-color: white;
+  border: solid 2px lightgrey;
+  border-radius:10px;
+  cursor: pointer;
+  width:15vw;
+  font-size:130%;
+  font-family:'Delius';
+  min-width:78px;
+  font-weight: bold;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.statusoptions {
+  display: none;
+  position: absolute;
+  float:right;
+  width:15vw;
+  border: dashed lightgrey 2px;
+  border-top:none;
+  height:20vh;
+}
+
+.statusoptions button {
+  color: black;
+  text-decoration: none;
+  display: block;
+  background:white;
+  border:none;
+  width:100%;
+  height:33%;
+  font-family:"Delius";
+  font-size:120%;
+}
+
+.statusoptions button:hover {
+  background-color: lightgrey;
+}
+
+.dropdown:hover .statusoptions {
+  display: block;
+}
+
+.dropdown:hover .statusbutton {
+  background-color: lightgrey;
+  border-bottom:none;
+  border-bottom-left-radius:0;
+  border-bottom-right-radius:0;
+  border-style:dashed;
+}
+
+
+.statusicon {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  float:left;
+  margin-top:3%;
+}
+
+/*Popups*/
+/*See references!*/
+
+input {
+  margin:2vw;
+  width:80%;
+  height:10%;
+  text-align:center;
+  font-size:150%;
+  border-style:solid;
+  border-width:4px;
+  border-radius:12px;
+}
+.showpopcl{
+  display:block !important;
+}
+
+.popup {
+  display:none;
+  position: fixed;
+  z-index:1;
+  left: 0;
+  top:0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+  -webkit-animation-name: fadeIn;
+  -webkit-animation-duration: 0.4s;
+  animation-name: fadeIn;
+  animation-duration: 0.4s
+}
+
+
+.popup-content {
+  z-index:2; /* Sit on top */
+  position: fixed;
+  right: 0;
+  margin-top:10vh;
+  background-color: white;
+  width: 40%;
+  min-width:340px;
+  min-height:80vh;
+  overflow:hidden;
+  border-style:solid;
+  border-width:5px;
+  border-top-left-radius:25px;
+  border-bottom-left-radius:25px;
+  -webkit-animation-name: slideIn;
+  -webkit-animation-duration: 0.4s;
+  animation-name: slideIn;
+  animation-duration: 0.4s
+}
+
+
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.popup-header {
+  padding: 1vh;
+  background-color: mediumseagreen;
+  color: white;
+  height:15%;
+  border-top-left-radius:20px;
+}
+
+.popup-body {
+  background:white;
+  height:85%;
+  border-bottom-left-radius:20px;
+  text-align:center;
+  padding:3vh;
+}
+
+.popup-body input {
+  width:70%;
+  height:10%;
+}
+
+.popup-footer {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+  height:10%;
+}
+
+@-webkit-keyframes slideIn {
+  from {right: -300px; opacity: 0}
+  to {right: 0; opacity: 1}
+}
+
+@keyframes slideIn {
+  from {right: -300px; opacity: 0}
+  to {right: 0; opacity: 1}
+}
+
+@-webkit-keyframes fadeIn {
+  from {opacity: 0}
+  to {opacity: 1}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0}
+  to {opacity: 1}
+}
+
+
+#commentdiv{
+  border:grey solid 3px;
+  border-radius:25px;
+  padding:3%;
+  margin:2vw;
+}
+
+.comment{
+  border-bottom: black solid 1px;
+}
+
+.commentAuthor{
+  margin-left:5vw;
+  color:darkgrey;
+  font-style:italic;
+  display:block;
+}
+
+.commentTime{
+  float:right;
+  color: dimgrey;
+  display:block;
+
+}
+
+
+
+/*Edit task (if manager)*/
+.edittask{
+  float:right;
+  background:white;
+  border:none;
+  cursor:pointer;
+}
+.edittask :hover {
+  background:lightgrey;
+  border-radius:7px;
+}
+
+input[type="text"]:disabled {
+  background:white !important;
+  border:none;
+  color:black;
+}
+
+
+
+/* Custom Checkmark */
+.container {
+  display: inline;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 3vh;
+  margin-right:3vh;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+.container input:checked ~ .checkmark {
+  background-color: mediumseagreen;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.container .checkmark:after {
+ 	top: 9px;
+	left: 9px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+}

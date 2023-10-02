@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <title>manila. Home</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="google-signin-client_id" content="893986866377-na5r3u0j3ieqeaqmarct22oljecn3q33.apps.googleusercontent.com">
+      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+      <script src="javascripts/home.js" defer></script>
+      <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+      <script src="https://apis.google.com/js/platform.js" async defer></script>
+      <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet_tasks.css">
+      <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet_all.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gochi+Hand">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Delius">
+   </head>
+   <body>
+      <div id="vuemain" v-on:click="closeanywhere" v-cloak>
+         <!-- Start Create Popup -->
+         <div id="CNTpopup" class="popup" v-bind:class="{ showpopcl: showpopvar }">
+            <div class="popup-content">
+               <div class="popup-header" v-bind:class="{hcm : hcm_var==1}">
+                  <span v-on:click="closepopup" class="close">&times;</span>
+                  <h2>Create New Task</h2>
+               </div>
+               <div class="popup-body">
+                  <input class="CNT" type="text" v-model="new_name" placeholder="Task Name">
+                  <input class="CNT" type="text" v-model="new_des" placeholder="Description"><br>
+                  <div class="dropdown" style="width:70%;">
+                     <button class="statusbutton" style="color:grey; width:100%; border:grey solid 4px; text-align:center; font-weight:normal; font-size:150%">{{new_date_relative}}</button>
+                     <div class="statusoptions" style="z-index:10; width:100%; height:auto">
+                        <button style="color:grey; font-weight: bold; height:auto " v-for="(item, index) in dotw_relative" v-on:click="new_date=dotw[index]; new_date_relative=dotw_relative[index]" >{{item}}</button>
+                     </div>
+                  </div>
+                  <br>
+                  <br>
+                  <div class="multiselect" style="margin-left:13%; margin-right:13%">
+                     <div class="selectBox" v-on:click="showPeople">
+                        <select style="color:grey; font-size:150%; font-weight:normal;">
+                           <option>People Involved:</option>
+                        </select>
+                        <div class="overSelect"></div>
+                     </div>
+                     <div id="checkboxes" style="padding:3px;">
+                        <label style="width:100% padding:0; margin:0; font-size:100%" v-for="people in stafffilter" class="container" >{{people.first_name}}
+                        <input type="checkbox" v-bind:value="people.staff_id" v-model="checked_people" ><br>
+                        <span style="height:15px; width:15px; border-radius:2px;" class="checkmark" ></span>
+                        </label>
+                     </div>
+                  </div>
+                  <br>
+                  <br>
+                  <br>
+                  <button class="greenbutton" style="float:none;width:70%" v-bind:class="{hcm : hcm_var==1}" v-on:click="createnewtask">CREATE</button>
+               </div>
+            </div>
+         </div>
+         <!-- End Create Popup -->
+         <!-- Start Settings Popup -->
+         <div id="settingspopup" class="popup" v-bind:class="{ showpopcl: showsettingsvar }">
+            <div class="popup-content" style="min-height:0">
+               <div class="popup-header" style="background:slategrey">
+                  <span v-on:click="closepopup" class="close">&times;</span>
+                  <h2>Settings</h2>
+               </div>
+               <br>
+               <div class="popup-body">
+                  <label class="container" >High Contrast Mode
+                  <input type="checkbox"   true-value="1" false-value="0" v-model="hcm_var"><br>
+                  <span class="checkmark"  style="border-radius:2px;" ></span>
+                  </label>
+               </div>
+            </div>
+         </div>
+         <!-- End Settings Popup -->
+         <div id="topright">
+            <img id="settings" src="settings.png" alt="Settings" v-on:click="showsettings"><br>
+            <button v-bind:class="{hcm : hcm_var==1}" id="logout" class="greenbutton" onclick="location.href='/login.html'">LOG OUT</button>
+         </div>
+         <!-- Header -->
+         <div  id="fixed" class="header" style="z-index:0" >
+            <div style="float:left;font-size:350%;color:gold;padding:0.5em;font-family:'Gochi Hand';">manila.</div>
+            <button v-bind:class="{hcm : hcm_var==1}" v-on:click="sendsummary" class="greenbutton" style="background-color: orange; margin-top:30px">Send Email Summary</button>
+            <div class="topnav">
+               <a v-bind:href="'/home.html?user='+user"  id="home" style="background-color:tomato;" v-bind:class="{hcm : hcm_var==1}">Home</a>
+               <a v-bind:href="'/tasks.html?user='+user"  style="background:darkorange;box-shadow: 10px 10px rgba(112, 128, 144, 0.8); color:black;font-weight: bold;" v-bind:class="{hcm : hcm_var==1}">Tasks</a>
+               <a v-bind:href="'/people.html?user='+user" style="background-color:mediumseagreen" v-bind:class="{hcm : hcm_var==1}">People</a>
+               <a v-bind:href="'/me.html?user='+user"  style="background-color:dodgerblue" v-bind:class="{hcm : hcm_var==1}">Me</a>
+            </div>
+            <div id="top" style="background-color:ivory; box-sizing:border-box; text-align:right">
+               <!--<h2 style=" color: grey; font-family:'Gochi Hand'; margin-right:1vw">Today is {{today}}</h2> -->
+            </div>
+         </div>
+         <!-- End Header -->
+         <main class="content"  >
+            <h1 style="display:inline">These are your upcoming tasks: </h1>
+            <div>
+               <br>
+               <br>
+               <br>
+               <button v-bind:class="{hcm : hcm_var==1}" v-on:click="showpopup" class="greenbutton" v-if="manager_priv" >Create New Task</button>
+            </div>
+            <div style="width:100%; display:block; overflow:hidden; padding-top:3vh">
+               <div style="width:100%; display:block; overflow:hidden; padding-top:3vh">
+                  <h2 style="display:inline">All Tasks: </h2>
+                  <button v-bind:class="{hcm : hcm_var==1}" class="greenbutton" v-if="showedit" v-on:click="edittask" style="margin-bottom: 10px; display:inline">{{edit_status}}</button>
+               </div>
+            </div>
+            <div class="tab">
+               <div style="padding:2px; text-align:right" v-for="(item, index) in tasks">
+                  <div class="statusicon" v-bind:style="{background:item.color}"></div>
+                  <button style="display:inline; width: 90%;" v-on:click="task=tasks[index]">{{item.name}}</button>
+               </div>
+            </div>
+            <!--CONTENT BOX -->
+            <div class="tabcontent">
+               <button v-bind:class="{hcm : hcm_var==1}" v-if="edit_var==1" class="greenbutton" v-if="manager_priv" v-on:click="deletetask" style="margin-bottom: 10px; display:inline; background-color:tomato">Delete Task</button>
+               <br>
+               <input class="varinputs" style="display:inline; font-weight: bold;" type="text" :disabled="edit_var == 0" v-model="task.name">
+               <br>
+               <div style="margin-top: 10px">
+                  <!--STATUS BAR -->
+                  <div class="dropdown" style="float:right;">
+                     <button class="statusbutton" v-bind:style="task">{{taskstat}}</button>
+                     <div class="statusoptions">
+                        <button v-on:click="changestatus(task.task_id,'red')"  style="color:tomato; font-weight: bold;" >Haven't Started</button>
+                        <button v-on:click="changestatus(task.task_id,'yellow')"  style="color:orange; font-weight: bold;">Working on It</button>
+                        <button v-on:click="changestatus(task.task_id,'green')" style="color:mediumseagreen; font-weight: bold;">Completed</button>
+                     </div>
+                  </div>
+                  <!--     END STATUS BAR -->
+                  <br>
+                  <br>
+                  <div style="margin-top:2vw; display:inline">
+                     <h4 style="text-decoration:underline"> Description: </h4>
+                     <input style="font-size:100%; text-align:left; " type="text" :disabled="edit_var == 0" v-model="task.description" class="varinputs">
+                  </div>
+               </div>
+               <br>
+               <br>
+               <h4 style="display:inline; text-decoration:underline" > Due Date: </h4>
+               <p style="display:inline">{{task_dd}}</p>
+               <br>
+               <br>
+               <br>
+               <!--Comments -->
+               <div id="commentdiv">
+                  <h4 style="display:inline; font-size:150%"> Comments: </h4>
+                  <br><br>
+                  <div class="comment" v-for="comm in taskcomments">
+                     <p class="commentText">{{comm.content}}</p>
+                     <p class="commentTime">{{comm.time_stamp}}</p>
+                     <p class="commentAuthor">-{{comm.author_name}}  {{comm.author_lname}}</p>
+                  </div>
+                  <br>
+                  <h4> Leave a comment: </h4>
+                  <br>
+                  <br>
+                  <textarea style="width:75%; height:5em" v-model="newcomment"></textarea>
+                  <button class="greenbutton" v-on:click="comment">POST</button>
+               </div>
+               <!--End Comments -->
+               <div style="float:right">
+                  <h4  style="display:inline">People Involved: </h4>
+                  <pre style="display:inline" v-for="people in taskpeoplefilter">  {{people.first_name}}  </pre>
+               </div>
+            </div>
+            <!-- End Content tab-->
+         </main>
+         <div class="footer"></div>
+      </div>
+   </body>
+</html>

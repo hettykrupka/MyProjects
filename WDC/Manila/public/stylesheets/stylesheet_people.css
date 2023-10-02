@@ -1,0 +1,56 @@
+#person{
+  display:block;
+}
+
+#people{
+  border: solid black 5px;
+  border-radius:25px;
+  padding: 1vw;
+  background:white;
+}
+
+.grid-container {
+  display: grid;
+  grid-column-gap: 50px;
+  grid-template-columns: auto auto auto;
+  background-color:white;
+  padding: 10px;
+  text-align:center;
+  border-bottom:lightgrey solid 2px;
+  width:100%;
+}
+
+.grid-item {
+  text-align: left;
+  width:50px;
+}
+
+.cnp {
+  background-color: dodgerblue;
+  color: white;
+  padding:2px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 150%;
+  margin:1vw;
+  border-radius: 8px;
+  border-style:solid;
+  border-width:3px;
+  border-color:black;
+  width:70%;
+  height:10%;
+
+
+}
+
+
+
+.container input:checked ~ .checkmark {
+  background-color: dodgerblue!important;
+}
+
+
+ .signup{
+  margin:1vh;
+}

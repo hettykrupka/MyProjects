@@ -1,0 +1,63 @@
+.selectBox {
+  position: relative;
+  width: 100%;
+  height:5vh;
+  text-align:center;
+  border:none;
+}
+
+.selectBox select {
+  width: 100%;
+  font-weight: bold;
+  height:5vh;
+  border: grey 3px solid;
+  border-top-right-radius:14px;
+  border-top-left-radius:14px;
+}
+
+.overSelect {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+#checkboxes {
+  display: none;
+  border: grey 2px dashed;
+  border-bottom-right-radius:14px;
+  border-bottom-left-radius:14px;
+  border-top:none;
+}
+
+#checkboxes label {
+  display: block;
+}
+
+#checkboxes label:hover {
+  background-color: lightgrey;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .checkmark:after {
+  display: none!important;
+}
+
+.CNT {
+  width:70%;
+}
+
+.varinputs{
+  margin:0;
+  text-align:left;
+  background:lightgrey;
+  border:none;
+  font-size:200%;
+  display:inline;
+  width:80%;
+}
+
+h4{
+  display:inline;
+}

@@ -1,0 +1,141 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Gochi Hand',Arial !important;
+}
+
+.center-screen {
+  position: absolute;
+    top: 63%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    overflow:hidden;
+}
+
+
+.decoration {
+  background-color:tomato;
+  float:left;
+  height:40px;
+  width:60px;
+  margin-left:10px;
+  border-top-right-radius:15px;
+  border-top-left-radius:15px;
+  border-top-style:solid;
+  border-left-style:solid;
+  border-right-style:solid;
+  border-width:3px;
+}
+
+button {
+  background-color: mediumseagreen;
+  color: white;
+  padding:2px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 150%;
+  margin:1vw;
+  border-radius: 8px;
+  border-style:solid;
+  border-width:3px;
+  border-color:black;
+  width:70%;
+  height:10%;
+
+
+}
+
+ button:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+input {
+  margin:2vw;
+  width:80%;
+  height:10%;
+  text-align:center;
+  font-size:150%;
+  border-style:solid;
+  border-width:4px;
+  border-radius:12px;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color:white;
+}
+
+main {
+  margin-right:5em;
+  margin-left:5em;
+  border-bottom-style:solid;
+  border-right-style:solid;
+  border-left-style:solid;
+  border-bottom-left-radius:25px;
+  border-bottom-right-radius:25px;
+  border-width:5px;
+  background-color:ivory;
+  padding-top:0.5em;
+
+}
+
+h1{
+  font-family:'Gochi Hand';
+  font-size:300%;
+  margin-top:0;
+}
+
+
+#vuemain{
+  margin:none;
+  border:none;
+  background-color:white;
+  overflow:hidden;
+}
+
+ .signup{
+  margin:1vh;
+}
+
+
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index:1; /* Sit on top */
+  left: 0;
+  top:0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  -webkit-animation-name: fadeIn; /* Fade in the background */
+  -webkit-animation-duration: 0.4s;
+  animation-name: fadeIn;
+  animation-duration: 0.4s
+}
+
+
+.container input:checked ~ .checkmark {
+  background-color: dodgerblue!important;
+}
+
+.abcRioButton{
+  box-shadow:none !important;
+}
+
+
+.abcRioButtonContentWrapper{
+  font-size:40px !important;
+  color:grey !important;
+}
+
+.abcRioButtonContents{
+    font-size: 50% !important;
+
+}

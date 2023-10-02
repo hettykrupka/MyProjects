@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <title>manila. Me</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="google-signin-client_id" content="893986866377-na5r3u0j3ieqeaqmarct22oljecn3q33.apps.googleusercontent.com">
+      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+      <script src="javascripts/me.js" defer></script>
+      <script src="https://apis.google.com/js/platform.js" async defer></script>
+      <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet_me.css">
+      <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet_all.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gochi+Hand">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Delius">
+   </head>
+   <body>
+      <div id="vuemain" v-on:click="closeanywhere" >
+         <!-- Start Settings Popup -->
+         <div id="settingspopup" class="popup" v-bind:class="{ showpopcl: showsettingsvar }">
+            <div class="popup-content" style="min-height:0; overflow:visible">
+               <div class="popup-header" style="background:slategrey">
+                  <span v-on:click="closepopup" class="close">&times;</span>
+                  <h2>Settings</h2>
+               </div>
+               <br>
+               <div class="popup-body">
+                  <label class="container" >High Contrast Mode
+                  <input type="checkbox"   true-value="1" false-value="0" v-model="hcm_var"><br>
+                  <span class="checkmark"  style="border-radius:2px;" ></span>
+                  </label>
+               </div>
+            </div>
+         </div>
+         <!-- End Settings Popup -->
+         <div id="topright">
+            <img id="settings" src="settings.png" alt="Settings" v-on:click="showsettings"><br>
+            <button v-bind:class="{hcm : hcm_var==1}" id="logout" class="greenbutton" onclick="location.href='/login.html'">LOG OUT</button>
+         </div>
+         <!-- Header -->
+         <div  id="fixed" class="header">
+            <div style="float:left;font-size:350%;color:gold;padding:0.5em;font-family:'Gochi Hand';">manila.</div>
+            <div class="topnav">
+               <a v-bind:href="'/home.html?user='+user"  id="home" style="background-color:tomato" v-bind:class="{hcm : hcm_var==1}">Home</a>
+               <a v-bind:href="'/tasks.html?user='+user"  style="background-color:darkorange" v-bind:class="{hcm : hcm_var==1}">Tasks</a>
+               <a v-bind:href="'/people.html?user='+user" style="background-color:mediumseagreen" v-bind:class="{hcm : hcm_var==1}">People</a>
+               <a v-bind:href="'/me.html?user='+user" style="background-color:dodgerblue; box-shadow: 10px 10px rgba(112, 128, 144, 0.8);color:black;font-weight: bold;" v-bind:class="{hcm : hcm_var==1}">Me</a>
+            </div>
+            <div id="top" style="background-color:ivory"></div>
+         </div>
+         <!-- End Header -->
+         <main class="content">
+            <div >
+               <h1>It's you, {{ first_name }} {{last_name}} !  </h1>
+               <br> <br>
+            </div>
+            <br>
+            <div style="float:left" class="tab">
+               <button  v-on:click="changedisp(1)" class="tablinks">Personal Information</button>
+               <button v-on:click="changedisp(3)" class="tablinks">Change Password</button>
+               <button v-on:click="changedisp(2)" class="tablinks">Availability</button>
+            </div>
+            <div class="tabcontent" style="text-align:center">
+               <!--Start Personal Info-->
+               <div v-if="show1">
+                  <div>
+                     <input type="text" id="fname" name="fname" v-model="first_name"><br>
+                     <input type="text" id="lname" name="lname" v-model="last_name"><br>
+                     <input type="text" id="username" name="username" v-model="username"><br>
+                     <input type="text" id="email" name="email" v-model="email"><br>
+                     <input type="submit" value="Submit Changes" class="greenbutton SC" v-bind:class="{hcm : hcm_var==1}" v-on:click="submitchanges">
+                  </div>
+               </div>
+               <!--End Personal Info-->
+               <!--Start A&S-->
+               <div v-if="show2" >
+                  <h2>I am available on: </h2>
+                  <div>
+                     <label class="container">Monday
+                     <input type="checkbox" v-model="availability[1]" true-value=1 false-value=0>
+                     <span class="checkmark"></span>
+                     </label>
+                     <br>
+                     <br>
+                     <label class="container">Tuesday
+                     <input type="checkbox" v-model="availability[2]" true-value=1 false-value=0>
+                     <span class="checkmark"></span>
+                     </label>
+                     <br>
+                     <br>
+                     <label class="container">Wednesday
+                     <input type="checkbox" v-model="availability[3]" true-value=1 false-value=0>
+                     <span class="checkmark"></span>
+                     </label>
+                     <br>
+                     <br>
+                     <label class="container">Thursday
+                     <input type="checkbox" v-model="availability[4]" true-value=1 false-value=0>
+                     <span class="checkmark"></span>
+                     </label>
+                     <br>
+                     <br>
+                     <label class="container">Friday
+                     <input type="checkbox" v-model="availability[5]" true-value=1 false-value=0>
+                     <span class="checkmark"></span>
+                     </label>
+                     <br>
+                     <br>
+                     <label class="container">Saturday
+                     <input type="checkbox" v-model="availability[6]" true-value=1 false-value=0>
+                     <span class="checkmark"></span>
+                     </label>
+                     <br>
+                     <br>
+                     <label class="container">Sunday
+                     <input type="checkbox" v-model="availability[0]" true-value=1 false-value=0>
+                     <span class="checkmark"></span>
+                     </label>
+                     <br>
+                     <br>
+                     <br>
+                     <input type="submit" value="Submit Changes" class="greenbutton SC" v-bind:class="{hcm : hcm_var==1}" v-on:click="submitavailability">
+                  </div>
+               </div>
+               <!--End A&S-->
+               <!--Start Notifications-->
+               <div v-if="show3">
+                  <h2>Upate your password </h2>
+                  <br>
+                  <div>
+                     <input type="text" name="password" placeholder="Current Password" v-model="old_password"><br>
+                     <input type="text"  name="password" placeholder="New Password" v-model="new_password"><br>
+                  </div>
+                  <br>
+                  <br>
+                  <br>
+                  <input type="submit" value="Submit Changes" class="greenbutton SC" v-bind:class="{hcm : hcm_var==1}" v-on:click="submitpassword">
+               </div>
+               <!--End Notifications-->
+            </div>
+         </main>
+         <div class="footer"></div>
+      </div>
+   </body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html  lang="en">
+   <head>
+      <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet_login.css">
+      <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet_all.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gochi+Hand">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Delius">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+      <script src="javascripts/login.js" defer></script>
+      <script src="https://apis.google.com/js/platform.js" async defer></script>
+      <meta name="google-signin-client_id" content="893986866377-na5r3u0j3ieqeaqmarct22oljecn3q33.apps.googleusercontent.com">
+      <title> manila. Login </title>
+   </head>
+   <body >
+      <div id="vuemain" v-on:click="closeanywhere" v-cloak>
+         <!-- Start Popup -->
+         <div id="SUpopup" class="popup"  v-bind:class="{ showpopcl: showpopvar }">
+            <div class="popup-content">
+               <div style="background-color: dodgerblue" class="popup-header">
+                  <span v-on:click="closepopup" class="close">&times;</span>
+                  <h2>Create New Account</h2>
+               </div>
+               <div class="popup-body">
+                  <input class="signup" placeholder="First Name" v-model="new_name">
+                  <input class="signup" placeholder="Last Name" v-model="new_lname">
+                  <input class="signup"  placeholder="username" v-model="new_username">
+                  <input class="signup" placeholder="email" v-model="new_email">
+                  <input class="signup"  placeholder="password" v-model="new_password">
+                  <br>
+                  <br>
+                  <label for="dob" style="font-size:150%">DOB:</label>
+                  <br>
+                  <input style="margin-top:1px" type="date" id="dob" name="dob" v-model="new_dob">
+                  <!--Manager-->
+                  <div style="text-align:left;margin-left:20%" >
+                     <label class="container">Employee
+                     <input type="radio" checked="checked" name="radio" value=0 v-model="new_manager" >
+                     <span class="checkmark"></span>
+                     </label>
+                     <label class="container">Manager
+                     <input type="radio" name="radio" value=1 v-model="new_manager">
+                     <span class="checkmark" v-bind:value="1"></span>
+                     </label>
+                  </div>
+                  <!--End Manager-->
+                  <button style="margin-top:5vh;background-color:dodgerblue" v-on:click="signup" >Sign Up</button>
+               </div>
+            </div>
+         </div>
+         <!-- End Popup -->
+         <div>
+            <h1 class="center-screen" style="top:17%;color:gold;font-size:600%">manila.</h1>
+            <div class="center-screen" style="top:28%">
+               <div class="decoration"></div>
+               <div class="decoration" style="background-color:darkorange"></div>
+               <div class="decoration" style="background-color:gold"></div>
+               <div class="decoration" style="background-color:mediumseagreen"></div>
+            </div>
+            <div class="center-screen" style="box-shadow:5px ; text-align:center; height:60vh; width:30vw; border-style:solid; border-width:5px; border-radius:25px; background-color:ivory; padding:1v; display:in-line-block; min-width:350px; min-height:520px">
+               <input placeholder="username" v-model="lUser" style="margin-top:3vh">
+               <input :type='type' placeholder="password" v-model="lPass" style="margin-bottom:1vh">
+               <div style="text-align:left;margin-left:20%" >
+                  <label class="container" style="width:100%;font-size:100%;margin:2em">Show Password
+                  <input type="checkbox"   true-value="text" false-value="password" v-model="type">
+                  <span class="checkmark"  style="border-radius:2px;" ></span>
+                  </label>
+               </div>
+               <button v-on:click="login"  style="margin-top:5vh">Login</button>
+               <button style="margin-top:5vh;background-color:dodgerblue" v-on:click="showpopup" >Sign Up</button>
+               <br>
+               <br>
+               <div style="border: black solid 3px; float:left; margin-left:30%; border-radius:20px; padding: 3%; background:white;" class="g-signin2" data-onsuccess="onSignIn"></div>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>

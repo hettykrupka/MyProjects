@@ -1,0 +1,18 @@
+W3 Copyright Policy:
+https://www.w3schools.com/about/about_copyright.asp
+
+Settings Button: http://clipart-library.com/settings-cliparts.html
+Login
+    Modal: https://www.w3schools.com/howto/howto_css_modals.asp
+    Custom Checkmark:https://www.w3schools.com/howto/howto_css_custom_checkbox.asp
+
+
+Home and Tasks
+    Multiselect Dropdown: https://stackoverflow.com/questions/17714705/how-to-use-checkbox-inside-select-opt
+    Top Nav: https://www.w3schools.com/howto/howto_js_topnav.asp
+    Tabs: popup-https://www.w3schools.com/howto/howto_css_popups.asp
+
+People:
+    Grid Display: https://www.w3schools.com/css/css_grid.asp
+
+Me:

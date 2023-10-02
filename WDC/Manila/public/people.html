@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <title>manila. People</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="google-signin-client_id" content="893986866377-na5r3u0j3ieqeaqmarct22oljecn3q33.apps.googleusercontent.com">
+      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+      <script src="javascripts/people.js" defer></script>
+      <script src="https://apis.google.com/js/platform.js" async defer></script>
+      <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet_people.css">
+      <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet_all.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gochi+Hand">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Delius">
+   </head>
+   <body>
+      <div id="vuemain" v-on:click="closeanywhere" v-cloak>
+         <!-- Start Settings Popup -->
+         <div id="settingspopup" class="popup" v-bind:class="{ showpopcl: showsettingsvar }">
+            <div class="popup-content" style="min-height:0">
+               <div class="popup-header" style="background:slategrey">
+                  <span v-on:click="closepopup" class="close">&times;</span>
+                  <h2>Settings</h2>
+               </div>
+               <br>
+               <div class="popup-body">
+                  <label class="container" >High Contrast Mode
+                  <input type="checkbox"   true-value="1" false-value="0" v-model="hcm_var"><br>
+                  <span class="checkmark"  style="border-radius:2px;" ></span>
+                  </label>
+               </div>
+            </div>
+         </div>
+         <!-- End Settings Popup -->
+         <!-- Start Popup -->
+         <div id="CNPpopup" class="popup"  v-bind:class="{ showpopcl: showpopvar }">
+            <div class="popup-content">
+               <div style="background-color: dodgerblue" class="popup-header">
+                  <span v-on:click="closepopup" class="close">&times;</span>
+                  <h2>Create New Person</h2>
+               </div>
+               <div class="popup-body">
+                  <input class="signup" placeholder="First Name" v-model="new_name">
+                  <input class="signup" placeholder="Last Name" v-model="new_lname">
+                  <input class="signup"  placeholder="username" v-model="new_username">
+                  <input class="signup" placeholder="email" v-model="new_email">
+                  <input class="signup"  placeholder="password" v-model="new_password"><br>
+                  <br>
+                  <label for="dob" style="font-size:150%">DOB:</label>
+                  <br>
+                  <input style="margin-top:1px" type="date" id="dob" name="dob" v-model="new_dob">
+                  <!--Manager-->
+                  <div style="text-align:left;margin-left:20%" >
+                     <label class="container">Employee
+                     <input type="radio" checked="checked" name="radio" value=0 v-model="new_manager" >
+                     <span class="checkmark"></span>
+                     </label>
+                     <label class="container">Manager
+                     <input type="radio" name="radio" value=1 v-model="new_manager">
+                     <span class="checkmark" v-bind:value="1"></span>
+                     </label>
+                  </div>
+                  <!--End Manager-->
+                  <button class="cnp" v-on:click="signup" >Create</button>
+               </div>
+            </div>
+         </div>
+         <!-- End Popup -->
+         <div id="topright">
+            <img id="settings" src="settings.png" alt="Settings" v-on:click="showsettings"><br>
+            <button v-bind:class="{hcm : hcm_var==1}" id="logout" class="greenbutton" onclick="location.href='/login.html'">LOG OUT</button>
+         </div>
+         <!-- Header -->
+         <div  id="fixed" class="header">
+            <div style="float:left;font-size:350%;color:gold;padding:0.5em;font-family:'Gochi Hand';">manila.</div>
+            <div class="topnav">
+               <a v-bind:href="'/home.html?user='+user"  id="home" style="background-color:tomato" v-bind:class="{hcm : hcm_var==1}">Home</a>
+               <a v-bind:href="'/tasks.html?user='+user"  style="background-color:darkorange" v-bind:class="{hcm : hcm_var==1}">Tasks</a>
+               <a v-bind:href="'/people.html?user='+user"  style="background-color:mediumseagreen; box-shadow: 10px 10px rgba(112, 128, 144, 0.8);color:black;font-weight: bold;" v-bind:class="{hcm : hcm_var==1}">People</a>
+               <a v-bind:href="'/me.html?user='+user"  style="background-color:dodgerblue" v-bind:class="{hcm : hcm_var==1}">Me</a>
+            </div>
+            <div id="top" style="background-color:ivory"></div>
+         </div>
+         <!-- End Header -->
+         <main  class="content">
+            <div style="display:block; width:100%; overflow:hidden">
+               <h1 >People in your workplace</h1>
+               <button style="background:dodgerblue" v-on:click="showpopup" class="greenbutton" v-if="manager_priv" v-bind:class="{hcm : hcm_var==1}">Create New Person</button>
+            </div>
+            <br>
+            <div id="people">
+               <div class="grid-container" v-for="item in users">
+                  <div class="grid-item">{{item.first_name}}</div>
+                  <div class="grid-item">{{item.last_name}}</div>
+                  <div class="grid-item">{{item.email}}</div>
+               </div>
+            </div>
+         </main>
+         <div class="footer"></div>
+      </div>
+   </body>
+</html>
